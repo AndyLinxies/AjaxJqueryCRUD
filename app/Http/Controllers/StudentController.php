@@ -59,4 +59,21 @@ class StudentController extends Controller
             'message'=>'Student Added Successfully'
         ]);
     }
+
+
+    public function editStudents($id){
+        $student= Student::find($id);
+        //S'il trouve, il affiche l'etudiant trouvé:
+        if ($student){
+            return response()->json([
+                'status'=>200,
+                'student'=>$student
+            ]);
+        }else{
+            return response()->json([
+                'status'=>404,
+                'message'=>'Student not found'
+            ]);
+        }
+    }
 }

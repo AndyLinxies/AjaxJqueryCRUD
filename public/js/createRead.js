@@ -1,3 +1,4 @@
+import './edit.js'
 
 //READ 
 //creation de tr puis td DOM jquery dans le tbody
@@ -22,12 +23,50 @@ function readStudent(){
                     <td>' + element.email + '</td>\
                     <td>' + element.course + '</td>\
                     <td>' + element.phone + '</td>\
-                    <td><button type="button" value="' + element.id + '" class="btn btn-primary editbtn btn-sm">Edit</button></td>\
-                    <td><button type="button" value="' + element.id + '" class="btn btn-danger deletebtn btn-sm">Delete</button></td>\
+                    <td><button type="button" value="'+ element.id+'" class="btn btn-primary edit btn-sm" id="editbtn">Edit</button></td>\
+                    <td><button type="button" value="'+element.id+'" class="btn btn-danger delete btn-sm">Delete</button></td>\
                     </tr>'
+
+                    
                 );
             });
+
+            
+            //EDIT
+            //Placée ici car la selection du bouton ne se fesais pas en dehors
+
+            $('.edit').on('click', function (e) {
+                e.preventDefault();
+                //prendre la value du bouton:
+                var stud_id= $(this).val();
+                //Montrer le modal edit
+                $('#editModal').modal('show');
+                //jqajax
+                //Atentiont aux /../ de la route
+                $.ajax({
+                    type: "GET",
+                    url: "/editStudents/"+stud_id,
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response);
+                        //Messages de validation
+                        if (response.status==404) {
+                            $('.success_message').addClass('alert alert-danger');
+                            $('.success_message').text(response.message);
+                        } else {
+                            //response.student.name nous donne acces au nom du student
+                            //on affiche dans le input sa valeur la valeur 
+                            $(".edit_name").val(response.student.name);
+                            $(".edit_course").val(response.student.course);
+                            $(".edit_email").val(response.student.email);
+                            $(".edit_phone").val(response.student.phone);
+                            $("#stud_id").val(stud_id);
+                        }
+                    }
+                });
+            });
         }
+
     });
 
 }
@@ -113,6 +152,8 @@ $('.add_student').on('click', function (e) {
         });
     
 });
+
+
 
 
 

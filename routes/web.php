@@ -24,3 +24,5 @@ Route::get('/readStudents', [StudentController::class,'readStudents']);
 
 Route::post('/students', [StudentController::class,'store']);
 
+//edit
+Route::get('/editStudents/{id}', [StudentController::class,'editStudents']);

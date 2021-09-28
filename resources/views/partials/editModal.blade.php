@@ -12,23 +12,23 @@
 
                 <ul id="update_msgList"></ul>
 
-                <input type="hidden" id="stud_id" />
+                <input  id="stud_id" />
 
                 <div class="form-group mb-3">
-                    <label for="">Full Name</label>
-                    <input type="text" id="name" required class="form-control">
+                    <label for="name">Full Name</label><br>
+                    <input class='edit_name' type="text" id="name" required class="form-control"><br>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="">Course</label>
-                    <input type="text" id="course" required class="form-control">
+                    <label for="course">Course</label><br>
+                    <input class='edit_course' type="text" id="course" required class="form-control"><br>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="">Email</label>
-                    <input type="text" id="email" required class="form-control">
+                    <label for="email">Email</label><br>
+                    <input class='edit_email' type="text" id="email" required class="form-control"><br>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="">Phone No</label>
-                    <input type="text" id="phone" required class="form-control">
+                    <label for="phone">Phone No</label><br>
+                    <input class='edit_phone' type="text" id="phone" required class="form-control"><br>
                 </div>
             </div>
             <div class="modal-footer">
