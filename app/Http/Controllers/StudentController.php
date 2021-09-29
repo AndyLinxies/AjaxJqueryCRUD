@@ -76,4 +76,49 @@ class StudentController extends Controller
             ]);
         }
     }
+
+    public function updateStudents(Request $request,$id){
+        //Validations
+        $validator=Validator::make( $request->all(),[
+            "name"=>"required",
+            "email"=>"required|email",
+            "course"=>"required",
+            "phone"=>"required",
+        ]);
+        
+        $update= Student::find($id);
+        if ($update){
+            $update->name=$request->name;
+            $update->email=$request->email;
+            $update->course=$request->course;
+            $update->phone=$request->phone;
+            $update->save();
+            return response()->json([
+                'status'=>200,
+                'message'=>'Student updated Succesfully'
+            ]);
+        }else{
+            return response()->json([
+                'status'=>404,
+                'message'=>'Student not found'
+            ]);
+        }
+
+
+        
+        //Quand ca reussi on affiche à la console que ca a réussi ex: {status: 200, message: 'Student Added Successfully'}
+        return response()->json([
+            'status'=>200,
+            'message'=>'Student Added Successfully'
+        ]);
+    }
+
+    public function destroy($id){
+        $destroy= Student::find($id);
+        $destroy->delete();
+        return response()->json([
+            'status'=>200,
+            'message'=>'Student Deleted Successfully'
+        ]);
+    }
 }
