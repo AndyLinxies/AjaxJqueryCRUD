@@ -71,7 +71,7 @@ function readStudent() {
 
             });
 
-
+            
             //DELETE
             $('.delete').on('click', function () {
                 //console.log('I have been deleted');
